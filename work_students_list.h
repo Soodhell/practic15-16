@@ -15,7 +15,6 @@
 void* init_list();
 
 struct Student{
-    struct Student* next;
     char last_name[20];
     char first_name[20];
     int sex;
@@ -27,17 +26,18 @@ struct Student{
 
 };
 
+struct Node{
+    struct Student* student;
+    struct Node* next;
+};
+
 struct List{
     int value;
     int size;
-    struct Student* head;
-    struct Student* end;
+    struct Node* head;
+    struct Node* end;
     void* (*get_student)(void*);
     void (*add_to_the_begin)(void*);
-    void (*add_to_the_end)(void*);
-    void (*insert)(void*);
-    void (*swap)(void*);
-    void (*pop)(void*);
     void (*save)(void*);
     void (*load)(void*);
 };
@@ -58,7 +58,6 @@ struct Data_students{
     int math_score;
     int physics_score;
     int chemistry_score;
-    int save_file;
 };
 
 struct Moving_and_output{
