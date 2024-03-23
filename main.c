@@ -28,7 +28,7 @@ gcc <name of the file in which the code exists> -o <name of the file (any) that 
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
-#include "work_students/work_students_list.h"
+#include "work_students_list.h"
 
 int main(){
 
