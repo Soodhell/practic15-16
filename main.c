@@ -28,7 +28,7 @@ gcc <name of the file in which the code exists> -o <name of the file (any) that 
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
- #include "work_students_list.h"
+#include "work_students/work_students_list.h"
 
 int main(){
 
@@ -61,67 +61,21 @@ int main(){
         perror("");
         exit(errno);
     }
-//
-//    data_students->list = list;
-//    strcpy(data_students->last_name, last_name[0]);
-//    strcpy(data_students->first_name, first_name[0]);
-//    data_students->age = 18;
-//    data_students->sex = 1;
-//    strcpy(data_students->group, group[0]);
-//    data_students->math_score = 5;
-//    data_students->physics_score = 5;
-//    data_students->chemistry_score = 5;
-//    data_students->save_file = 0;
-//
-//    list->add_to_the_begin(data_students);
-//
-//    strcpy(data_students->last_name, last_name[1]);
-//    strcpy(data_students->first_name, first_name[1]);
-//    data_students->age = 19;
-//    data_students->sex = 1;
-//    strcpy(data_students->group, group[1]);
-//    data_students->math_score = 5;
-//    data_students->physics_score = 2;
-//    data_students->chemistry_score = 5;
-//    data_students->save_file = 0;
-//
-//    list->add_to_the_begin(data_students);
-//
-//    strcpy(data_students->last_name, last_name[2]);
-//    strcpy(data_students->first_name, first_name[2]);
-//    data_students->age = 17;
-//    data_students->sex = 1;
-//    strcpy(data_students->group, group[2]);
-//    data_students->math_score = 5;
-//    data_students->physics_score = 5;
-//    data_students->chemistry_score = 3;
-//    data_students->save_file = 0;
-//
-//    list->add_to_the_begin(data_students);
-//
-//    strcpy(data_students->last_name, last_name[3]);
-//    strcpy(data_students->first_name, first_name[3]);
-//    data_students->age = 18;
-//    data_students->sex = 0;
-//    strcpy(data_students->group, group[0]);
-//    data_students->math_score = 5;
-//    data_students->physics_score = 4;
-//    data_students->chemistry_score = 5;
-//    data_students->save_file = 0;
-//
-//    list->add_to_the_begin(data_students);
-//
-//    strcpy(data_students->last_name, last_name[4]);
-//    strcpy(data_students->first_name, first_name[4]);
-//    data_students->age = 18;
-//    data_students->sex = 0;
-//    strcpy(data_students->group, group[1]);
-//    data_students->math_score = 2;
-//    data_students->physics_score = 3;
-//    data_students->chemistry_score = 5;
-//    data_students->save_file = 1;
-//
-//    list->add_to_the_begin(data_students);
+
+    data_students->list = list;
+
+    for (int i = 0; i < 3; ++i) {
+        strcpy(data_students->last_name, last_name[i]);
+        strcpy(data_students->first_name, first_name[i]);
+        data_students->age = 18+i;
+        data_students->sex = 1;
+        strcpy(data_students->group, group[i]);
+        data_students->math_score = 5;
+        data_students->physics_score = 5;
+        data_students->chemistry_score = 5;
+
+        list->add_to_the_begin(data_students);
+    }
 
     struct Moving_and_output* print_students = malloc_struct(Moving_and_output);
 
@@ -131,22 +85,21 @@ int main(){
     }
 
     print_students->list = list;
+    printf("Hello");
 //    list->save(print_students);
     list->load(print_students);
 
-    struct Student* temp = list->head;
+    struct Node* temp = list->head;
 
     printf("==============ЖЕНЩИНЫ ОТЛИЧНИЦЫ ПО ХИМИИ==============\n");
 
     for(int i = 1; i <= list->size; i++){
-        //if(temp->sex == 0 && temp->chemistry_score == 5){
-            printf("Your age is %d, your first_name is %s\n", temp->age, temp->first_name);
-            printf("Your sex is %d, your last_name is %s\n", temp->sex, temp->last_name);
-            printf("Your group is %s\n", temp->group);
-            printf("Math: %d, physics: %d, chemistry: %d\n", temp->math_score, temp->physics_score, temp->chemistry_score);
+            printf("Your age is %d, your first_name is %s\n", temp->student->age, temp->student->first_name);
+            printf("Your sex is %d, your last_name is %s\n", temp->student->sex, temp->student->last_name);
+            printf("Your group is %s\n", temp->student->group);
+            printf("Math: %d, physics: %d, chemistry: %d\n", temp->student->math_score, temp->student->physics_score, temp->student->chemistry_score);
             printf("=========================================");
             printf("\n");
-        //}
         temp = temp->next;
     }
     return 0;
